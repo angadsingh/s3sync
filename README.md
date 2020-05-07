@@ -19,7 +19,7 @@ s3sync
 
 ### Overview
 
-s3sync.py is a utility created to sync files to/from S3 as a continuously running process, without having to manually take care of managing the sync. It internally uses the `aws s3 sync` command to do the sync, and  uses the python module [watchdog](https://github.com/gorakhargosh/watchdog) to listen to filesystem events on the monitored path and push changes to S3. For pull, there is no listener imlemented, and it does simple interval based pull. Therefore for pull it is recommended to use [s3fs](https://github.com/s3fs-fuse/s3fs-fuse) instead  - just mount the s3 bucket on your filesystem.
+s3sync.py is a utility created to sync files to/from S3 as a continuously running process, without having to manually take care of managing the sync. It internally uses the `aws s3 sync` command to do the sync, and  uses the python module [watchdog](https://github.com/gorakhargosh/watchdog) to listen to filesystem events on the monitored path and push changes to S3. For pull, there is no listener implemented, and it does simple interval based pull. Therefore for pull it is recommended to use [s3fs](https://github.com/s3fs-fuse/s3fs-fuse) instead  - just mount the s3 bucket on your filesystem.
 
 ### Features
 
