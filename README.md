@@ -131,6 +131,10 @@ watcher:
 s3:
   max_concurrent_requests: 20
   max_queue_size: 2000
+  multipart_threshold: 8MB
+  multipart_chunksize: 8MB
+  max_bandwidth: 
+  use_accelerate_endpoint: "false"
   region: ap-south-1
 ```
 
