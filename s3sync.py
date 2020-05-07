@@ -14,10 +14,6 @@ from pyformance import timer, time_calls, MetricsRegistry
 from pyformance.reporters import ConsoleReporter
 from functools import partial 
 
-if sys.version_info >= (3, 0):
-    print("must use python 2.x")
-    sys.exit(1)
-
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
 
@@ -30,10 +26,10 @@ def _run_long_command(command):
     process = subprocess.Popen(shlex.split(command), stdout=subprocess.PIPE)
     while True:
         output = process.stdout.readline()
-        if output == '' and process.poll() is not None:
+        if (output == '' or output == b'') and process.poll() is not None:
             break
         if output:
-            logger.debug(output.strip())
+            logger.debug(output.decode().strip())
     rc = process.poll()
     return rc
 
@@ -235,6 +231,9 @@ def pull(ctx, s3path, localpath, interval):
     while True:
         _do_sync(ctx, s3path, localpath)
         time.sleep(interval)
+
+def cli():
+    s3sync(obj={})
 
 if __name__ == '__main__':
     s3sync(obj={})

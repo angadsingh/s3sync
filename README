@@ -5,6 +5,7 @@ s3sync
    * [Overview](#overview)
    * [Features](#features)
    * [Requirements](#requirements)
+   * [Installation](#installation)
    * [Usage](#usage)
        * [First run/setup](#first-runsetup)
        * [Push](#push)
@@ -32,9 +33,13 @@ s3sync.py is a utility created to sync files to/from S3 as a continuously runnin
 
 Requires [AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) to be installed and available in the path
 
+### Installation
+
+`pip install pys3sync`
+
 ### Usage
 
-`python s3sync.py --help`
+`s3sync --help`
 
 ```bash
 Usage: s3sync.py [OPTIONS] COMMAND [ARGS]...
@@ -59,7 +64,7 @@ Commands:
   push  One-way continuous sync from localpath to s3 path (uses a file...
 ```
 
-`python s3sync.py --config config.yaml push --help`
+`s3sync --config config.yaml push --help`
 
 ```bash
 Usage: s3sync.py push [OPTIONS]
@@ -73,7 +78,7 @@ Options:
   --help            Show this message and exit.
 ```
 
-`python s3sync.py --config config.yaml push --help`
+`s3sync --config config.yaml push --help`
 
 ```bash
 Usage: s3sync.py pull [OPTIONS]
@@ -90,7 +95,7 @@ Options:
 
 ##### First run/setup
 
-`python s3sync.py --config-yaml config.yaml init`
+`s3sync --config-yaml config.yaml init`
 
 This utility creates a [named profile](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html) for your AWS CLI so that the parameters required for the S3 cli for the utility are isolated from your regular AWS CLI profile. The first time you nee to run the `init` command, which will create the named profile `s3sync`  in your local aws config (`~/.aws/config`), with the parameters configured in `config.yaml` and credentials copied from your default AWS credentials file.
 
@@ -98,19 +103,19 @@ This utility creates a [named profile](https://docs.aws.amazon.com/cli/latest/us
 
 You run one instance of this utility per localpath<>s3path combination that you want to continuously sync
 
-`python s3sync.py --config config.yaml -v DEBUG push --s3path s3://<bucket>/<path> --localpath ./` 
+`s3sync --config config.yaml -v DEBUG push --s3path s3://<bucket>/<path> --localpath ./` 
 
-![push](readme_images/push.png)
+![push](docs/push.png)
 
 ##### Pull
 
-`python s3sync.py --config config.yaml -v DEBUG pull --s3path s3://<bucket>/<path> --localpath ./sync --interval 2`
+`s3sync --config config.yaml -v DEBUG pull --s3path s3://<bucket>/<path> --localpath ./sync --interval 2`
 
-![pull](readme_images/pull.png)
+![pull](docs/pull.png)
 
 ##### Rate limiting in action
 
-![ratelimit](readme_images/ratelimit.png)
+![ratelimit](docs/ratelimit.png)
 
 ### Configuration
 
