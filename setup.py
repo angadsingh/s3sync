@@ -1,15 +1,19 @@
 from setuptools import setup
 
+# read the contents of your README file
+from os import path
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 setup(
     name='pys3sync',
-    version='0.1',
+    version='0.1.1',
     author="Angad Singh",
     author_email="angad@angadsingh.in",
     description="Continuously Sync local files to/from S3",
-    long_description="""A utility created to sync files to/from S3 as a continuously running
-    process, without having to manually take care of managing the sync. 
-    It internally uses the aws s3 sync command to do the sync and uses
-    python's watchdog listener to get notified of any changes to the watched folder.""",
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     license="MIT",
     url="https://github.com/angadsingh/s3sync",
     py_modules=['s3sync'],
