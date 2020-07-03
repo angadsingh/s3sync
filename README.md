@@ -1,6 +1,8 @@
+# s3sync
 
-s3sync
-=================
+[![PyPi Version](https://img.shields.io/pypi/v/pys3sync.svg)](https://pypi.org/project/pys3sync)
+[![Supported versions](https://img.shields.io/pypi/pyversions/pys3sync.svg)](https://pypi.org/project/pys3sync)
+
 <!--ts-->
    * [Overview](#overview)
    * [Features](#features)
