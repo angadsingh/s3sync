@@ -12,7 +12,8 @@ import time
 import token_bucket
 from pyformance import timer, time_calls, MetricsRegistry
 from pyformance.reporters import ConsoleReporter
-from functools import partial 
+from functools import partial
+from pkg_resources import packaging
 
 logger = logging.getLogger(__name__)
 click_log.basic_config(logger)
@@ -117,7 +118,7 @@ def _check_aws_cli_version_compatibility(ctx):
     if process.returncode != 0:
         ctx.fail("Could not run aws cli to check version")
     version = result.decode().split("/")[1].split(" ")[0]
-    if version >= AWS_CLI_MIN_SUPPORTED_VERSION:
+    if packaging.version.parse(version) >= packaging.version.parse(AWS_CLI_MIN_SUPPORTED_VERSION):
         logger.info("Found compatible AWS CLI version [{}]".format(version))
     else:
         ctx.fail("Found incompatible AWS CLI version [{}]".format(version))
